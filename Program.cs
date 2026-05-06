@@ -5,7 +5,7 @@ namespace Calstring
     class Program
     {
         static void Main(string[] args)
-        {
+        { /*
             // Foydalanuvchidan ifodani qabul qilamiz
             Console.Write("Matematik ifodani kiriting (masalan, 1+3-1+5): ");
             string misol = Console.ReadLine();
@@ -51,6 +51,51 @@ namespace Calstring
 
             // Dastur yopilib ketmasligi uchun
             Console.ReadKey();
+            */
+
+        bool davomEtish = true;
+        while (davomEtish)
+        {
+            Console.WriteLine("\n--- CallString Kalkulyatori ---");
+            
+            Console.Write("Birinchi sonni kiriting: ");
+            double son1 = double.Parse(Console.ReadLine());
+
+            Console.Write("Amalni kiriting (+, -, *, /): ");
+            string amal = Console.ReadLine();
+
+            Console.Write("Ikkinchi sonni kiriting: ");
+            double son2 = double.Parse(Console.ReadLine());
+
+            double natija = 0;
+            bool xatolik = false;
+
+            switch (amal)
+            {
+                case "+": natija = son1 + son2; break;
+                case "-": natija = son1 - son2; break;
+                case "*": natija = son1 * son2; break;
+                case "/": 
+                    if (son2 != 0) natija = son1 / son2; 
+                    else { Console.WriteLine("Xato: Nolga bo'lish mumkin emas!"); xatolik = true; }
+                    break;
+                default:
+                    Console.WriteLine("Noto'g'ri amal!");
+                    xatolik = true;
+                    break;
+            }
+
+            if (!xatolik)
+            {
+                Console.WriteLine($"Natija: {natija}");
+            }
+
+            Console.Write("\nYangi amal bajarishni xohlaysizmi? (ha/yo'q): ");
+            string javob = Console.ReadLine().ToLower();
+            if (javob != "ha") davomEtish = false;
         }
+        
+        Console.WriteLine("Dastur tugatildi.");
     }
+ }
 }
